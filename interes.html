@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calculadora de Préstamo | Arca Cars</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --primary-red: #1d920e;
+      --secondary-red: #519662;
+      --white: #f5f1f1;
+      --light-gray: #ffffff;
+      --dark-gray: #333333;
+      --border-radius: 8px;
+      --box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background-color: var(--light-gray);
+      color: var(--dark-gray);
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    .header {
+      background-color: var(--primary-red);
+      color: var(--white);
+      padding: 20px 0;
+      text-align: center;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+
+    .logo-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 15px;
+    }
+
+    .logo {
+      font-size: 28px;
+      font-weight: bold;
+    }
+
+    .logo i {
+      margin-right: 10px;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 40px 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex: 1;
+    }
+
+    .calculadora-container {
+      width: 100%;
+      max-width: 500px;
+      background-color: var(--white);
+      border-radius: var(--border-radius);
+      box-shadow: var(--box-shadow);
+      overflow: hidden;
+    }
+
+    .calculadora-header {
+      background-color: var(--primary-red);
+      color: var(--white);
+      padding: 20px;
+      text-align: center;
+    }
+
+    .calculadora-header h2 {
+      font-size: 24px;
+      font-weight: 600;
+    }
+
+    .calculadora-body {
+      padding: 30px;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 500;
+      color: var(--dark-gray);
+    }
+
+    .form-group input {
+      width: 100%;
+      padding: 12px 15px;
+      border: 1px solid #000000;
+      border-radius: var(--border-radius);
+      font-size: 16px;
+      transition: border-color 0.3s;
+    }
+
+    .form-group input:focus {
+      outline: none;
+      border-color: var(--primary-red);
+      box-shadow: 0 0 0 2px rgba(227, 6, 19, 0.2);
+    }
+
+    .btn {
+      background-color: var(--primary-red);
+      color: var(--white);
+      border: none;
+      border-radius: var(--border-radius);
+      padding: 14px 20px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      width: 100%;
+      transition: background-color 0.3s;
+    }
+
+    .btn:hover {
+      background-color: var(--secondary-red);
+    }
+
+    .resultado {
+      margin-top: 25px;
+      background-color: #ffffff;
+      border-left: 4px solid var(--primary-red);
+      padding: 20px;
+      border-radius: 0 var(--border-radius) var(--border-radius) 0;
+      display: none;
+    }
+
+    .resultado-item {
+      margin-bottom: 12px;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .resultado-item:last-child {
+      margin-bottom: 0;
+      padding-top: 10px;
+      border-top: 1px solid #ffffff;
+      font-weight: bold;
+    }
+
+    .resultado-label {
+      color: var(--dark-gray);
+    }
+
+    .resultado-value {
+      font-weight: 600;
+    }
+
+    .footer {
+      background-color: var(--dark-gray);
+      color: var(--white);
+      text-align: center;
+      padding: 15px 0;
+      font-size: 14px;
+    }
+
+    .logo-image {
+      display: block;
+      margin: 3px auto;
+      max-width: 150px;
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        padding: 20px;
+      }
+
+      .calculadora-body {
+        padding: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<header class="header">
+  <div class="logo-container">
+    <div class="logo">HABITAT PROYECT</div>
+  </div>
+</header>
+
+<img src="imagen/logoarca.jpeg" alt="Logo Arca" class="logo-image">
+
+<div class="container">
+  <div class="calculadora-container">
+    <div class="calculadora-header">
+      <h2>Calculadora de Financiamiento</h2>
+    </div>
+    
+    <div class="calculadora-body">
+      <div class="form-group">
+        <label for="principal"><i class="fas fa-dollar-sign"></i> Monto del préstamo:</label>
+        <input type="number" id="principal" placeholder="Ej: 14000">
+      </div>
+      
+      <div class="form-group">
+        <label for="meses"><i class="far fa-calendar-alt"></i> Plazo en meses:</label>
+        <input type="number" id="meses" placeholder="Ej: 24">
+      </div>
+      
+      <div class="form-group">
+        <label for="interes"><i class="fas fa-percent"></i> Tasa de interés anual (%):</label>
+        <input type="number" id="interes" placeholder="Ej: 4.9">
+      </div>
+
+      <button class="btn" onclick="calcular()">
+        <i class="fas fa-calculator"></i> Calcular Cuota
+      </button>
+    <button class="btn" onclick="window.location.href='index.html'">
+      <i class="fas fa-home"></i> Regresar al inicio
+    </button>
+      <div class="resultado" id="resultado">
+        <div class="resultado-item">
+          <span class="resultado-label">Interés utilizado:</span>
+          <span class="resultado-value" id="interes-valor">0% anual</span>
+        </div>
+        <div class="resultado-item">
+          <span class="resultado-label">Interés total generado:</span>
+          <span class="resultado-value" id="interes-total">$0.00</span>
+        </div>
+        <div class="resultado-item">
+          <span class="resultado-label">Monto total a pagar:</span>
+          <span class="resultado-value" id="monto-total">$0.00</span>
+        </div>
+        <div class="resultado-item">
+          <span class="resultado-label">Cuota mensual:</span>
+          <span class="resultado-value" id="cuota-mensual">$0.00</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer class="footer">
+  &copy; 2022 HABITAT PROYECT. Todos los derechos reservados.
+</footer>
+
+<script>
+function calcular() {
+  const P = parseFloat(document.getElementById('principal').value);
+  const n = parseInt(document.getElementById('meses').value);
+  const interesInput = parseFloat(document.getElementById('interes').value);
+
+  if (isNaN(P) || isNaN(n) || isNaN(interesInput) || P <= 0 || n <= 0 || interesInput < 0) {
+    alert("Por favor ingresa valores válidos.");
+    return;
+  }
+
+  const r = interesInput / 100; // Convertir porcentaje a decimal
+  const t = n / 12; // plazo en años
+
+  const interesTotal = P * r * t;
+  const montoTotal = P + interesTotal;
+  const cuotaMensual = montoTotal / n;
+
+  document.getElementById('interes-valor').textContent = `${interesInput}% anual`;
+  document.getElementById('interes-total').textContent = `$${interesTotal.toFixed(2)}`;
+  document.getElementById('monto-total').textContent = `$${montoTotal.toFixed(2)}`;
+  document.getElementById('cuota-mensual').textContent = `$${cuotaMensual.toFixed(2)}`;
+  
+  document.getElementById('resultado').style.display = 'block';
+}
+</script>
+
+</body>
+</html>
